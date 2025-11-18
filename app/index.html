@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A curated list of awesome free services, tools, and resources for nonprofit organizations. Discover cloud infrastructure, design tools, marketing resources, and more." />
+    <meta name="keywords" content="nonprofits, free services, resources, tools, nonprofit organizations, charity, NGO" />
+    <meta property="og:title" content="Awesome Free Nonprofits" />
+    <meta property="og:description" content="A curated list of awesome free services and resources for nonprofit organizations" />
+    <meta property="og:type" content="website" />
+    <title>Awesome Free Nonprofits - Free Services & Resources for Nonprofits</title>
+    <style>
+      /* Force dark background immediately if dark mode is active */
+      /* This prevents flash of white content before React loads */
+      html.dark,
+      html.dark body {
+        background-color: hsl(222.2, 84%, 4.9%) !important;
+        color: hsl(210, 40%, 98%) !important;
+      }
+    </style>
+    <script>
+      // Apply theme immediately to prevent flash of white content (FOUC)
+      // This script runs synchronously before React renders
+      (function() {
+        const storageKey = 'awesome-nonprofits-theme';
+        const defaultTheme = 'system';
+        
+        const getThemePreference = () => {
+          if (typeof localStorage !== 'undefined' && localStorage.getItem(storageKey)) {
+            return localStorage.getItem(storageKey);
+          }
+          return defaultTheme;
+        };
+        
+        const storedTheme = getThemePreference();
+        let theme = storedTheme;
+        
+        if (theme === 'system') {
+          const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light';
+          theme = systemTheme;
+        }
+        
+        const isDark = theme === 'dark';
+        document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

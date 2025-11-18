@@ -1,0 +1,27 @@
+{
+  "name": "awesome-free-nonprofits",
+  "version": "1.0.0",
+  "description": "A curated list of awesome free services and resources for nonprofit organizations",
+  "type": "module",
+  "scripts": {
+    "parse": "node scripts/parse-readme.js",
+    "dev": "npm run parse && cd app && npm run dev",
+    "build": "npm run parse && cd app && npm run build",
+    "preview": "cd app && npm run preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/athman3/awesome-free-nonprofits.git"
+  },
+  "keywords": [
+    "awesome",
+    "awesome-list",
+    "nonprofits",
+    "free",
+    "resources",
+    "tools"
+  ],
+  "author": "athman3",
+  "license": "CC0-1.0"
+}
+
