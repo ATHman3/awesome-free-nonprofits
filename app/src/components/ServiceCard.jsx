@@ -38,7 +38,7 @@ export function ServiceCard({ service, onCategoryClick }) {
       <CardContent className="flex-1 flex flex-col pt-4">
         {service.about && (
           <div className="mb-4">
-            <h4 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground mb-2">
+            <h4 className="font-semibold text-base tracking-wide text-foreground mb-2">
               About {service.name}
             </h4>
             <CardDescription className="text-base leading-relaxed mb-4">
@@ -48,7 +48,7 @@ export function ServiceCard({ service, onCategoryClick }) {
         )}
         {service.offer && (
           <div className="mb-6">
-            <h4 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground mb-2">
+            <h4 className="font-semibold text-base tracking-wide text-foreground mb-2">
               Offer
             </h4>
             <CardDescription className="text-base leading-relaxed">
