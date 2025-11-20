@@ -54,7 +54,18 @@ function parseReadme() {
       if (serviceMatch && currentCategory) {
         const serviceName = serviceMatch[1].trim();
         const serviceUrl = serviceMatch[2].trim();
-        let description = serviceMatch[3].trim();
+        let rawDescription = serviceMatch[3].trim();
+        let score = 50; // Default score
+
+        // Extract score from hidden comment if present: <!-- score: 99 -->
+        const scoreMatch = rawDescription.match(/<!--\s*score:\s*(\d+)\s*-->/);
+        if (scoreMatch) {
+          score = parseInt(scoreMatch[1], 10);
+          // Remove the score comment from description
+          rawDescription = rawDescription.replace(scoreMatch[0], '').trim();
+        }
+
+        let description = rawDescription;
         
         // Remove trailing period if present (we'll add it back consistently)
         if (description.endsWith('.')) {
@@ -112,12 +123,15 @@ function parseReadme() {
           if (offer && !existingService.offer) {
             existingService.offer = offer;
           }
+          // Update score if the new one is higher or explicitly set (optional logic, here we just take the latest found)
+          existingService.score = score;
         } else {
           // Create new service entry
           const newService = {
             name: serviceName,
             url: serviceUrl,
             description: offer || about || description, // Use offer as description for backward compatibility
+            score: score,
             categories: [currentCategory]
           };
           

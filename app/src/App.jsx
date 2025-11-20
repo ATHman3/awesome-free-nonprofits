@@ -23,7 +23,7 @@ function App() {
 
   // Filter services based on search and category
   const filteredServices = useMemo(() => {
-    let filtered = servicesData.services
+    let filtered = [...servicesData.services]
 
     // If search is active, search across all services regardless of category
     if (searchQuery.trim()) {
@@ -41,6 +41,16 @@ function App() {
         )
       }
     }
+
+    // Sort results by score (descending) then by name (ascending)
+    filtered.sort((a, b) => {
+      // Sort by score descending
+      const scoreDiff = (b.score || 0) - (a.score || 0)
+      if (scoreDiff !== 0) return scoreDiff
+      
+      // If scores are equal, sort by name ascending
+      return a.name.localeCompare(b.name)
+    })
 
     return filtered
   }, [searchQuery, selectedCategory])
